@@ -24,6 +24,7 @@ Route::post('register', [UserController::class, 'register']);
 Route::post('login', [UserController::class, 'login']);
 Route::post('deleteUser', [UserController::class, 'deleteUser']);
 Route::post('allUsers', [UserController::class, 'allUsers']);
+Route::post('displayAllWater', [WaterAmountController::class, 'displayAllWater']);
 Route::post('forgotPassword', [ResetPasswordController::class, 'forgotPassword']);
 Route::post('password/resetPassword', [ResetPasswordController::class, 'resetPassword']);
 Route::post('amountWrite', [WaterAmountController::class, 'amountWrite']);
