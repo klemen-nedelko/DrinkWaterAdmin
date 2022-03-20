@@ -29,6 +29,8 @@ Route::post('forgotPassword', [ResetPasswordController::class, 'forgotPassword']
 Route::post('password/resetPassword', [ResetPasswordController::class, 'resetPassword']);
 Route::post('amountWrite', [WaterAmountController::class, 'amountWrite']);
 Route::get('amountDisplay', [WaterAmountController::class, 'amountDisplay']);
+Route::get('amountDisplayDay', [WaterAmountController::class, 'amountDisplayDay']);
+Route::get('amountDisplayWeek', [WaterAmountController::class, 'amountDisplayWeek']);
 
 
 

@@ -21,7 +21,7 @@ class WaterAmountController extends Controller
         $users_id = $request->input('users_id');
         $water = User::find($users_id);
         $DisplayWater = WaterAmount::where('users_id',$users_id)->get();
-        return $DisplayWater ;
+        return $DisplayWater;
     }
     function displayAllWater(Request $request){
         $allData = DB::table('water_amounts')->select('users.id','water_amounts.amount','users.name','users.lastName','water_amounts.date_water_input')
@@ -29,5 +29,22 @@ class WaterAmountController extends Controller
         ->orderBy('users.id', 'desc')
         ->get(); 
         return $allData;
+    }
+    function amountDisplayDay(Request $request){
+        $users_id = $request->input('users_id');
+        $day = Carbon::today()->format('d-m-Y');
+        $dataDay = DB::table('water_amounts')->select('amount')
+        ->where('date_water_input',$day, 'users_id', $users_id)->get()->sum('amount');
+        return $dataDay;
+    }
+    
+    function amountDisplayWeek(Request $request){
+        $users_id = $request->input('users_id');
+        $week = Carbon::today()->subDays('7')->format('d-m-Y');
+        $dataWeek = DB::table('water_amounts')->select('amount')
+        ->where('date_water_input', '>=',$week)
+        ->where('users_id', $users_id)
+        ->get()->sum('amount');
+        return $dataWeek;
     }
 }
